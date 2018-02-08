@@ -1,0 +1,80 @@
+<div class="container">
+    <p class="text-center"><b>AccuSOLO Mobile</b></p>
+</div>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li><a href="#"><span class="glyphicon glyphicon-home gi-3x"></span></a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-qrcode gi-3x"></span>></a></li>
+        </ul>
+    </div>
+</nav>
+
+<p class="text-center gi-2x"><b><u>Chamber A</u></b></p>
+<!--<p class="text-center gi-2x">Load ID</p>-->
+<form class="form-horizontal" name="userInfoForm" novalidate>
+
+    <div class="text-center">
+        <label>Load ID</label> 25645387
+    </div>
+
+    <div class="text-center">
+        <label>Cycle #</label> 766
+    </div>
+    <h2></h2>
+    <div class="text-center">
+        <label>Pressure</label> 169.3 kPa
+    </div>
+    <div class="text-center">
+        <label>Temperature</label> 50.3&deg;C
+    </div>
+    <div class="text-center">
+        <label>Timer Remaining</label> 3h 23m
+    </div>
+
+    <div class="buttoncontainer">
+        <img class="image" [src]="eoinject" alt="eoinject">
+        <h4>EO Inject</h4>
+        <div class="image">
+            <div><span class="moveGlyph glyphicon glyphicon-bell gi-4x"></span></div>
+        </div>
+        <h4>No Alarms</h4>
+    </div>
+
+    <div class="row">
+        <form class="form-inline" (ngSubmit)="sendMessage()" #messageForm="ngForm">
+            <div class="form-group">
+                <label class="sr-only" for="message">Message</label>
+                <input type="text" class="form-control" id="message" placeholder="your message..." name="message" [(ngModel)]="message" required>
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="!messageForm.valid">Send SignalR Message</button>
+        </form>
+    </div>
+    <div class="row" *ngIf="messages.length > 0">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Messages</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let message of messages; let i = index">
+                        <td>{{i + 1}}</td>
+                        <td>{{message}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row" *ngIf="messages.length <= 0">
+        <span>No messages</span>
+    </div>
+
+    <div class="buttoncontainer">
+        <div class="button" ng-click="sendMessage()">Hold</div>
+        <div class="button" onclick="arg">Abort</div>
+    </div>
+</form>
